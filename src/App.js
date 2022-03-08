@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Welcome from './components/Welcome'
+import PagesRenderer from './components/PagesRenderer'
+import Thx from './components/Thx'
 
-function App() {
+const App = () => {
+  const [pageIndex, setPageIndex] = useState(0);
+  
+
+  const increasePageIndex = ()=>{
+    setPageIndex(prevState => prevState + 1);
+  }
+
+  const decreasePageIndex = ()=>{
+    setPageIndex(prevState => prevState - 1);
+  }
+
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!pageIndex &&
+        <Welcome
+        increasePageIndex={increasePageIndex}
+      />
+      }
+      {pageIndex && pageIndex < 6 &&
+      <PagesRenderer
+        decreasePageIndex={decreasePageIndex}
+        increasePageIndex={increasePageIndex}
+        pageIndex={pageIndex}  
+      />}
+      {pageIndex === 6 &&
+      <div>
+      <Thx/>
+      {setTimeout(() => {
+        setPageIndex(0);
+      }, 2000)}
+      </div>}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

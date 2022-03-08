@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Rowdies&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 body {
   margin: 0;
+  background-color: #0C0D0E;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -11,3 +15,155 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* welcome section */
+
+.title{
+  font-family: 'Rowdies', cursive;
+  font-style: normal;
+  margin: 100px;
+  font-size: 5vw;
+  line-height: 70px;
+  text-align: center;
+  color: #FE3B1F;
+}
+
+.welcome {
+  background: url(./Images/stars.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rocketman{
+  height: 45vh;
+}
+
+.start-btn{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  border: none;
+  background-color:#FE3B1F;
+  border-radius: 40px;
+  width: 20vw;
+  padding: 15px 10px;
+  margin: 20px auto 10px;
+  cursor: pointer;
+  color: #FFFFFF;
+}
+
+.start-btn:hover{
+  color:#FE3B1F;
+  background-color:#FFFFFF;
+
+}
+
+.apps-btn{
+  border:none;
+  background:none;
+  cursor: pointer;
+  opacity: 80%;
+  text-decoration: underline;
+  font-family: Montserrat;
+  font-style: normal;
+  color:#ffffff;
+}
+
+.apps-btn:hover{
+  opacity: 100%;
+}
+
+/* pages section */
+
+.page-title {
+  font-family: 'Rowdies', cursive;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 30px;
+  font-size: 2vw;
+  line-height: 70px;
+  text-align: center;
+  color: #FE3B1F;
+  
+}
+
+.page{
+  display: flex;
+}
+
+.info-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+  color: #ffffff;
+}
+
+.text-info{
+  display: flex;
+  flex-direction: column;
+  padding:  0px 50px;
+  
+  text-align:flex-start;
+  justify-content: flex-start;
+  width: 70%;
+}
+
+.input-page{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.inputs input{
+  border: solid 1px #525557; 
+  margin: 15px;
+  height: 40px;
+  width: 60%;
+  opacity: 0.9;
+}
+
+.inputs input::placeholder{
+  color: #454545;
+  opacity: 0.8;
+}
+
+.pagination{
+  display: flex;
+  padding: 10px;
+  margin: 70px auto;
+}
+
+.pagination img {
+  padding: 7px;
+}
+
+
+
+
+
+.submit-page{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
