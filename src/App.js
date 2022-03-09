@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Welcome from './components/Welcome'
 import PagesRenderer from './components/PagesRenderer'
 import Thx from './components/Thx'
+import Applications from './components/Applications'
 
 const App = () => {
   const [pageIndex, setPageIndex] = useState(0);
@@ -15,6 +16,10 @@ const App = () => {
     setPageIndex(prevState => prevState - 1);
   }
 
+  const changePageIndex = (val)=>{
+    setPageIndex(val);
+  }
+
  
 
   return (
@@ -22,13 +27,15 @@ const App = () => {
       {!pageIndex &&
         <Welcome
         increasePageIndex={increasePageIndex}
+        setPageIndex={setPageIndex}
       />
       }
       {pageIndex && pageIndex < 6 &&
       <PagesRenderer
         decreasePageIndex={decreasePageIndex}
         increasePageIndex={increasePageIndex}
-        pageIndex={pageIndex}  
+        pageIndex={pageIndex}
+        changePageIndex={changePageIndex}  
       />}
       {pageIndex === 6 &&
       <div>
@@ -37,6 +44,8 @@ const App = () => {
         setPageIndex(0);
       }, 2000)}
       </div>}
+
+      {pageIndex === 7 && <Applications/>}
     </div>
   )
 }

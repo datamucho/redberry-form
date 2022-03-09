@@ -1,45 +1,89 @@
 import React from 'react'
-import next from '../../Images/Next.svg'
-import prev from '../../Images/Previous.svg'
-import balls from '../../Images/balls (2).svg'
+import Pagination from '../Pagination'
 
-const CovidInput = ({increasePageIndex, decreasePageIndex}) => {
+const CovidInput = ({
+  increasePageIndex, 
+  decreasePageIndex,
+  pageIndex,
+  changePageIndex,
+  handleWorkPref,
+  handleCovid,
+  handleCovidAt,
+  handleVaccine,
+  handleVaccineAt 
+}) => {
   return (
-    <div className="input-page">
+    <div className="covid-page">
       <h1 className="page-title">Covid Stuff</h1>
-      <div className="inputs">
+      <div className="covid-inputs">
 
-      <label>How would you prefer to work?</label>
-      <input type="radio" id='office' value='From sairme office'/>
-      <label for='office'>From sairme office</label>
-      <input type="radio" id='home' value='From Home'/>
-      <label for='home'>From Home</label>
-      <input type="radio" id='hybrid' value='Hybrid'/>
-      <label for='hybrid'>Hybrid</label>
+      <div className="covid-section">
+        <label>How would you prefer to work?</label><br/>
+        <input 
+          onChange={()=>handleWorkPref('from_office')}
+          type="radio" 
+          id='office' 
+          value='From sairme office'/>
+        <label htmlFor='office'>From sairme office</label><br/>
+        <input 
+              type="radio" id='home' value='From Home'
+              onChange={()=>handleWorkPref('from_home')}
+              />
+        <label htmlFor='home'>From Home</label><br/>
+        <input 
+              type="radio" id='hybrid' value='Hybrid'
+              onChange={()=>handleWorkPref('hybrid')}
+              />
+        <label htmlFor='hybrid'>Hybrid</label><br/>
+      </div>
 
-      <label>Did You contact Covid19</label>
-      <input type="radio" id='yes1' value='Yes'/>
-      <label for='yes1'>Yes</label>
-      <input type="radio" id='no1' value='No'/>
-      <label for='no1'>No</label>
-      <label>When?</label>
-      <input type='date'/>
+      <div className="covid-section">
+        <label>Did You contact Covid19</label><br/>
+        <input 
+              type="radio" id='yes1' value='Yes'
+              onChange={()=> handleCovid(true)}
+              />
+        <label htmlFor='yes1'>Yes</label><br/>
+        <input 
+              type="radio" id='no1' value='No'
+              onChange={()=>handleCovid(false)}
+              />
+        <label htmlFor='no1'>No</label><br/>
+      </div>
 
-      <label>Have you been vactinated?</label>
-      <input type="radio" id='yes2' value='Yes'/>
-      <label for='yes2'>Yes</label>
-      <input type="radio" id='no2' value='No'/>
-      <label for='no2'>No</label>
+      <div className="covid-section">
+        <label>When?</label><br/>
+        <input 
+              type='date'
+              onChange={(event)=>handleCovidAt(event.target.value)}/><br/>
+      </div>
+      
 
-      <label>When did you get your last vaccine?</label>
-      <input type='date'/>
+      <div className="covid-section">
+        <label>Have you been vaccinated?</label><br/>
+        <input type="radio" id='yes2' value='Yes'
+          onChange={()=>handleVaccine(true)}
+          />
+        <label htmlFor='yes2'>Yes</label><br/>
+        <input type="radio" id='no2' value='No'
+        onChange={()=>handleVaccine(false)}/>
+        <label htmlFor='no2'>No</label><br/>
+      </div>
+      <div className="covid-section">
+        <label>When did you get your last vaccine?</label><br/>
+        <input type='date' onChange={(event)=>handleVaccineAt(event.target.value)}/>
+      </div>
 
       </div>
-      <div className="pagination">
-        <img onClick={decreasePageIndex} src={prev} height={24}/>
-        <img src={balls} height={24}/>
-        <img onClick={increasePageIndex} src={next} height={24}/>
-      </div>
+
+      <div className="pag-section">
+      <Pagination 
+          pageIndex={pageIndex} 
+          increasePageIndex={increasePageIndex} 
+          decreasePageIndex={decreasePageIndex} 
+          changePageIndex={changePageIndex}
+          />
+    </div>
     </div>
   )
 }

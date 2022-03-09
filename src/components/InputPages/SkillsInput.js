@@ -1,10 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import next from '../../Images/Next.svg'
-import prev from '../../Images/Previous.svg'
-import balls from '../../Images/balls (1).svg'
+import Pagination from '../Pagination';
+import remove from '../../Images/Remove.svg'
 
-const SkillsInput = ({increasePageIndex, decreasePageIndex, handleSkills}) => {
+const SkillsInput = ({
+  increasePageIndex, 
+  decreasePageIndex, 
+  handleSkills, 
+  pageIndex, 
+  changePageIndex
+}) => {
+
   const [options, setOptions] = useState([]);
   const [selected, setSelected] = useState('Skill')
   const [years, setYears] = useState(0);
@@ -27,12 +33,12 @@ const SkillsInput = ({increasePageIndex, decreasePageIndex, handleSkills}) => {
   }, [])
 
   const handleClick = () => {
-    setSkills((prevState) => [...prevState, {title: selected, exp: years}])
+    setSkills((prevState) => [...prevState, {'title': selected, 'exp': years}])
     handleSkills(skills);
   }
 
-  const removeSkill = (title) => {
-    setSkills((prevState) => prevState.filter(item => item.title !== title))
+  const removeSkill = (id) => {
+    setSkills((prevState) => prevState.filter(item => item.id !== id))
     handleSkills(skills)
   }
 
@@ -41,32 +47,47 @@ const SkillsInput = ({increasePageIndex, decreasePageIndex, handleSkills}) => {
     <div className="input-page">
       <h1 className="page-title">Tell us about your skills</h1>
       <div className="inputs">
-      <select defaultValue={'DEFAULT'} onChange={(event)=> setSelected(event.target.value)}>
-        {options.map(item =>  
-          <option  
-            key={`key:${item.id}`} 
-            value={item.title}
-          >skill {item.title}</option>
-        )}
-      </select>
-      <input type="number" min={0} placeholder="Experience Duration in Years"
-      onChange={(event)=> setYears(event.target.value)}/>
-      <button onClick={handleClick}>Add Programming Language</button> 
+
+        <div className="add-skill">
+        <select defaultValue={'DEFAULT'} onChange={(event)=> setSelected(event.target.value)}>
+          {options.map(item =>  
+            <option  
+              key={`key:${item.id}`} 
+              value={item.title}
+            >skill {item.title}</option>
+          )}
+        </select>
+
+        <input 
+          type="number" 
+          min={0} 
+          placeholder="Experience Duration in Years"
+          onChange={(event)=> setYears(event.target.value)}
+          />
+
+        <button onClick={handleClick} className="add-lan">Add Programming Language</button> 
+        </div>
 
       {skills.map((item, index)=> 
-      <div key={`id:${index}`}>
+      <div 
+        className="skill-item" 
+        key={`id:${index}`}>
         <p>{item.title}</p>
         <p>{item.exp} Years of experience</p>
-        <button onClick={()=>removeSkill(item.title)}>remove</button>
+        <img
+          src={remove} 
+          onClick={()=>removeSkill(item.id)}
+          />
       </div>)}
 
       </div>
 
-      <div className="pagination">
-        <img onClick={decreasePageIndex} src={prev} height={24}/>
-        <img src={balls} height={24}/>
-        <img onClick={increasePageIndex} src={next} height={24}/>
-      </div>
+      <Pagination 
+          pageIndex={pageIndex} 
+          increasePageIndex={increasePageIndex} 
+          decreasePageIndex={decreasePageIndex} 
+          changePageIndex={changePageIndex}
+          />
     </div>
   )
 }

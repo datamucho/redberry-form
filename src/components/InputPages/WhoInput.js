@@ -1,15 +1,17 @@
 import React from 'react'
-import next from '../../Images/Next.svg'
-import prev from '../../Images/Previous.svg'
-import balls from '../../Images/balls.svg'
+import Pagination from '../Pagination'
 
 const WhoInput = ({
+            pageIndex,
+            changePageIndex,
             increasePageIndex, 
             decreasePageIndex, 
             handleFname, 
             handleLname, 
             handleEmail, 
             handlePhone}) => {
+  
+
               
   return (
     <div className="input-page">
@@ -17,10 +19,12 @@ const WhoInput = ({
 
         <div className="inputs">
 
-          <input type="text" placeholder="First Name"
+          <input type="text" placeholder="First Name Minimum 2 Character"
+          required minlength={2}
           onChange={(event)=>handleFname(event.target.value)}/>
 
-          <input type="text" placeholder="Last Name"
+          <input type="text" placeholder="Last Name Minimum 2 Character"
+          required minlength={2}
           onChange={(event)=>handleLname(event.target.value)}/>
 
           <input type="email" placeholder="E Mail"
@@ -29,12 +33,13 @@ const WhoInput = ({
           <input type="phone" placeholder="+995 5____"
           onChange={(event)=>handlePhone(event.target.value)}/>
         </div>
-
-      <div className="pagination">
-        <img onClick={decreasePageIndex} src={prev} height={24}/>
-        <img src={balls} height={24}/>
-        <img onClick={increasePageIndex} src={next} height={24}/>
-      </div>
+        
+        <Pagination 
+          pageIndex={pageIndex} 
+          increasePageIndex={increasePageIndex} 
+          decreasePageIndex={decreasePageIndex} 
+          changePageIndex={changePageIndex}
+          />
         
     </div>
   )

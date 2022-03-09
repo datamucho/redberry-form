@@ -1,31 +1,52 @@
 import React from 'react'
-import next from '../../Images/Next.svg'
-import prev from '../../Images/Previous.svg'
-import balls from '../../Images/balls (3).svg'
+import Pagination from '../Pagination'
 
-const AboutInput = ({increasePageIndex, decreasePageIndex}) => {
+const AboutInput = ({
+  increasePageIndex, 
+  decreasePageIndex,
+  changePageIndex,
+  pageIndex,
+  handleDevtalk,
+  handleDevtalkTop,
+  handleSpecial
+}) => {
   return (
-    <div className="input-page">
+    <div className="covid-page">
 
       <h1 className="page-title">What About You?</h1>
 
-      <div className="inputs">
-      <label>Would You attend Devtalks and maybe also organize your own</label>
-      <input type="radio" value='Yes'/>
-      <input type="radio" value='No'/>
+      <div className="covid-inputs">
 
-      <label>What would You speak about at Devtalks</label>
-      <input type='text'/>
-
-      <label>Tell us something special</label>
-      <input type='text'/>
+      <div className="covid-section">
+        <label>Would You attend Devtalks and maybe also organize your own</label><br/>
+        <input type="radio" value='Yes' onChange={()=>handleDevtalk(true)}/>
+        <label>Yes</label><br/>
+        <input type="radio" value='No' onChange={()=>handleDevtalk(false)}/>
+        <label>No</label><br/>
       </div>
 
-      <div className="pagination">
-        <img onClick={decreasePageIndex} src={prev} height={24}/>
-        <img src={balls} height={24}/>
-        <img onClick={increasePageIndex} src={next} height={24}/>
+      <div className="about-section">
+        <label>What would You speak about at Devtalks</label><br/>
+        <input type='text'onChange={(event)=>handleDevtalkTop(event.target.value)}/><br/>
+       </div> 
+
+      <div className="about-section">
+        <label>Tell us something special</label><br/>
+        <input type='text' onChange={(event)=>handleSpecial(event.target.value)}/>
+        </div>
+      
       </div>
+      
+      
+
+      <div className="pag-section">
+      <Pagination 
+          pageIndex={pageIndex} 
+          increasePageIndex={increasePageIndex} 
+          decreasePageIndex={decreasePageIndex} 
+          changePageIndex={changePageIndex}
+          />
+        </div>
       
     </div>
   )

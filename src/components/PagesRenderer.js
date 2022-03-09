@@ -11,7 +11,7 @@ import Submit from './Submit'
 import axios from 'axios'
 
 
-const PagesRenderer = ({pageIndex, increasePageIndex, decreasePageIndex}) => {
+const PagesRenderer = ({pageIndex, increasePageIndex, decreasePageIndex, changePageIndex}) => {
   const [fname, setFname] = useState(null)
   const [lname, setLname] = useState(null)
   const [email, setEmail] = useState(null)
@@ -31,7 +31,7 @@ const PagesRenderer = ({pageIndex, increasePageIndex, decreasePageIndex}) => {
   const submit = ()=>{
     increasePageIndex();
     axios.post('https://bootcamp-2022.devtest.ge/api/application', {
-      "token": "8dd1198d-c45a-4c9d-a06e-6f6d923c5aa1",
+      "token": "9ab02592-0cef-44ee-8387-a4e5b130c0dc",
       "first_name": fname,
       "last_name": lname,
       "email": email,
@@ -61,6 +61,8 @@ const PagesRenderer = ({pageIndex, increasePageIndex, decreasePageIndex}) => {
         pageIndex === 1?
         <div className='page'>
           <WhoInput
+            pageIndex={pageIndex}
+            changePageIndex={changePageIndex}
             increasePageIndex={increasePageIndex}
             decreasePageIndex={decreasePageIndex}
             handleFname={(name)=> setFname(name)}
@@ -73,25 +75,40 @@ const PagesRenderer = ({pageIndex, increasePageIndex, decreasePageIndex}) => {
         : pageIndex === 2?
         <div className='page'>
           <SkillsInput
+            pageIndex={pageIndex}
+            changePageIndex={changePageIndex}
             increasePageIndex={increasePageIndex}
             decreasePageIndex={decreasePageIndex}
-            handleSkills={(skills) => setSkills(skills)}
+            handleSkills={(item) => setSkills(item)}
           />
           <SkillsInfo/> 
         </div>
         : pageIndex === 3?
        <div className='page'>
           <CovidInput
+            pageIndex={pageIndex}
+            changePageIndex={changePageIndex}
             increasePageIndex={increasePageIndex}
             decreasePageIndex={decreasePageIndex}
+            handleWorkPref={state => setWorkPref(state)}
+            handleCovid={state => setHadCovid(state)}
+            handleCovidAt={state => setHadCovidAt(state)}
+            handleVaccine={state => setVaccinated(state)}
+            handleVaccineAt={state => setVaccinatedAt(state)}
+           
           />
           <CovidInfo/> 
         </div>
         : pageIndex === 4?
         <div className='page'>
           <AboutInput
+            pageIndex={pageIndex}
+            changePageIndex={changePageIndex}
             increasePageIndex={increasePageIndex}
             decreasePageIndex={decreasePageIndex}
+            handleDevtalk={(state)=>setDevtalk(state)}
+            handleDevtalkTop={(state)=>setDevtalkTop(state)}
+            handleSpecial={(state)=>setSpecial(state)}
           />
           <AboutInfo/> 
         </div>
